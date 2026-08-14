@@ -1,0 +1,150 @@
+{
+  "nombre_proyecto": "CUI Student Ops AI Hub",
+  "nombre_formal": "Ecosistema IA para atención y operaciones de alumnos con revisión humana",
+  "estado": "funcionando - MVP final",
+  "fecha_blueprint": "2026-08-12",
+  "objetivo": "Automatizar el procesamiento inicial de consultas ficticias de alumnos, generar borradores internos con IA, bloquear acciones críticas por revisión humana y registrar trazabilidad operativa.",
+  "herramientas": {
+    "base_de_datos": "Airtable",
+    "orquestador": "Make",
+    "modelo_ia": "OpenAI gpt-4o-mini",
+    "documentacion": "Notion y Google Drive",
+    "salida": "Salida simulada tipo Gmail draft",
+    "control_humano": "Human in the Loop"
+  },
+  "airtable": {
+    "base": "CUI Reply Assistant HITL",
+    "tablas": {
+      "Consultas": {
+        "descripcion": "Tabla principal de casos ficticios de alumnos.",
+        "vistas": {
+          "Por generar": "Estado = Generando y Generar respuesta marcado.",
+          "Aprobados": "Casos aprobados por revisión humana.",
+          "Aprobados para salida": "Aprobado marcado, Estado = Aprobado y Estado salida = Bloqueado por HITL."
+        },
+        "campos_clave": [
+          "ID consulta",
+          "Nombre ficticio",
+          "Email ficticio",
+          "Canal",
+          "Tipo de consulta",
+          "Consulta del alumno",
+          "Contexto interno",
+          "Estado",
+          "Generar respuesta",
+          "Respuesta IA sugerida",
+          "Resumen IA",
+          "Prioridad",
+          "Requiere revisión humana",
+          "Aprobado",
+          "Estado final",
+          "Observaciones humanas",
+          "Datos mínimos completos",
+          "Acción crítica",
+          "Canal de salida final",
+          "Salida simulada",
+          "Estado salida",
+          "Modelo IA usado",
+          "Última modificación aprobación"
+        ]
+      },
+      "Base de conocimiento": {
+        "descripcion": "Memoria operativa ficticia con reglas internas validadas."
+      },
+      "Logs de ejecución": {
+        "descripcion": "Registro de ejecuciones, resultados, errores y acciones tomadas."
+      },
+      "Métricas Dashboard": {
+        "descripcion": "Tabla para indicadores de operación y seguimiento del MVP."
+      }
+    }
+  },
+  "escenarios_make": [
+    {
+      "nombre": "EF - CUI Student Ops AI Hub - Procesar consulta",
+      "estado": "funcionando",
+      "objetivo": "Procesar consultas nuevas con IA, actualizar Airtable y registrar log.",
+      "modulos": [
+        "Airtable - Watch Records desde vista Por generar",
+        "Router - validación de datos mínimos completos",
+        "OpenAI - Generate a response con gpt-4o-mini",
+        "JSON - Parse JSON",
+        "Airtable - Update a Record",
+        "Airtable - Create a Record en Logs de ejecución"
+      ],
+      "salida": "Caso actualizado en estado En revisión humana y Estado salida Bloqueado por HITL."
+    },
+    {
+      "nombre": "EF - CUI Student Ops AI Hub - Salida aprobada",
+      "estado": "funcionando",
+      "objetivo": "Detectar casos aprobados por humano y preparar salida simulada.",
+      "modulos": [
+        "Airtable - Watch Records desde vista Aprobados para salida",
+        "Airtable - Update a Record"
+      ],
+      "salida": "Estado final = Listo para enviar y Estado salida = Salida simulada."
+    }
+  ],
+  "flujo_general": [
+    "Se crea una consulta ficticia de alumno en Airtable.",
+    "Make detecta el caso en la vista Por generar.",
+    "El Router valida si los datos mínimos están completos.",
+    "OpenAI analiza la consulta y devuelve JSON puro.",
+    "JSON Parse estructura la respuesta.",
+    "Airtable actualiza el caso con resumen, prioridad, respuesta sugerida y salida simulada.",
+    "El caso queda bloqueado por HITL en estado En revisión humana.",
+    "Una persona aprueba manualmente el caso.",
+    "Make detecta el caso aprobado en la vista Aprobados para salida.",
+    "Airtable actualiza el cierre: Listo para enviar y Salida simulada."
+  ],
+  "hitl": {
+    "descripcion": "El sistema no ejecuta acciones críticas sin aprobación humana.",
+    "campos_de_control": [
+      "Aprobado",
+      "Estado",
+      "Estado salida",
+      "Estado final",
+      "Observaciones humanas",
+      "Última modificación aprobación"
+    ],
+    "criterio_de_salida": "Aprobado marcado, Estado = Aprobado y Estado salida = Bloqueado por HITL."
+  },
+  "manejo_de_errores": {
+    "error_detectado": "JSON Parse no pudo interpretar la salida inicial de OpenAI.",
+    "causa": "La respuesta del modelo no llegó como JSON puro.",
+    "solucion_aplicada": "Se reforzó el prompt de OpenAI con reglas finales de formato: sin markdown, sin texto extra, primer carácter { y último carácter }.",
+    "evidencia": "EF_03_error_json_parse_openai_output.png"
+  },
+  "privacidad_y_seguridad": [
+    "Solo se utilizan datos ficticios.",
+    "No se usan alumnos reales.",
+    "No se envían correos reales.",
+    "No se confirman cupos, pagos, fechas, precios ni disponibilidad real.",
+    "Toda salida queda como simulación hasta revisión humana."
+  ],
+  "evidencias": [
+    "EF_01_openai_prompt_formato_json_puro.png",
+    "EF_02_json_parse_result_mapping.png",
+    "EF_03_error_json_parse_openai_output.png",
+    "EF_04_make_escenario_procesar_consulta_ok.png",
+    "EF_05_airtable_consultas_y_salida_human_review.png",
+    "EF_06_airtable_vista_aprobados_para_salida_filtros_hitl.png",
+    "EF_07_make_trigger_salida_aprobada_configurado.png",
+    "EF_08_make_escenario_salida_aprobada_configurado.png",
+    "EF_09_make_escenario_salida_aprobada_ok.png",
+    "EF_10_airtable_caso_aprobado_listo_para_enviar.png"
+  ],
+  "valor_profesional": [
+    "Demuestra diseño de procesos con IA aplicada a operaciones.",
+    "Integra base de datos, orquestador, modelo IA, validación humana y trazabilidad.",
+    "Sirve como portfolio para operaciones, customer experience, back office, automatización e IA aplicada.",
+    "Muestra criterio de seguridad: datos ficticios, bloqueo de acciones críticas y revisión humana."
+  ],
+  "proximas_mejoras": [
+    "Agregar ruta de datos incompletos con log específico.",
+    "Sumar dashboard visual con métricas automáticas.",
+    "Exportar logs a Google Sheets o Looker Studio.",
+    "Crear plantillas de respuesta por tipo de consulta.",
+    "Agregar integración real con Gmail solo después de validar permisos y privacidad."
+  ]
+}
