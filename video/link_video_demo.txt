@@ -1,7 +1,14 @@
-Video demo pendiente de edición final.
+# Video Demo - CUI Student Ops AI Hub
 
-Los clips ya fueron grabados y serán unidos en un único video demo.
-El enlace final al video será agregado en este archivo y en el README.md.
+Video demo final del proyecto:
 
-Nombre sugerido del archivo final:
-Demo_Final_CUI_Student_Ops_AI_Hub.mp4
+https://drive.google.com/file/d/1hh5JlMunIZsbRYNvipOC35bGAD6Z-5Bi/view?usp=drivesdk
+
+Archivo:
+CUI_Student_Ops_AI_Hub_Demo_Final.mp4
+
+Descripción:
+Demostración del ecosistema de automatización IA para atención y operaciones de alumnos con revisión humana. El video muestra la organización de la entrega, la base Airtable, los escenarios de Make, el uso de OpenAI, el flujo HITL, la salida simulada y el cierre del proyecto.
+
+Nota:
+El proyecto utiliza datos ficticios y no envía mensajes reales.
