@@ -264,23 +264,16 @@ README.md
 
 ## 13. Video demo
 
-Estado: **pendiente de grabación**.
+**Estado:** finalizado.
 
-El video demo mostrará:
+El video demo final muestra el funcionamiento general del ecosistema: estructura de Drive, documentación PDF, base Airtable, escenarios de Make, procesamiento con IA, control Human-in-the-loop, dashboard y resultado final.
 
-- Carpeta de entrega final.
-- PDF y documentación.
-- Base Airtable.
-- Escenario 1 de Make.
-- Error JSON Parse y solución.
-- HITL y vista de aprobación.
-- Escenario 2 de salida aprobada.
-- Resultado final en Airtable.
+- [Ver video demo final en Google Drive](https://drive.google.com/file/d/1hh5JlMunIZsbRYNvipOC35bGAD6Z-5Bi/view?usp=drivesdk)
 
-Archivo final sugerido:
+Archivo final:
 
 ```text
-Demo_Final_CUI_Student_Ops_AI_Hub.mp4
+CUI_Student_Ops_AI_Hub_Demo_Final.mp4
 ```
 
 ---
