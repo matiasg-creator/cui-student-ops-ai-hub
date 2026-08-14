@@ -1,0 +1,7 @@
+Video demo pendiente de edición final.
+
+Los clips ya fueron grabados y serán unidos en un único video demo.
+El enlace final al video será agregado en este archivo y en el README.md.
+
+Nombre sugerido del archivo final:
+Demo_Final_CUI_Student_Ops_AI_Hub.mp4
